@@ -2,4 +2,5 @@
 <resources>
 
     <dimen name="titleMainLabel">20sp</dimen>
+    <dimen name="addEmployeeBtnHeight">50dp</dimen>
 </resources>

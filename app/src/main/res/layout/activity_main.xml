@@ -107,6 +107,65 @@
             app:layout_constraintStart_toStartOf="@+id/trainEmployeeButton"
             app:layout_constraintTop_toBottomOf="@+id/trainEmployeeButton" />
 
+        <ImageView
+            android:id="@+id/reportsEmployeeButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="8dp"
+            android:adjustViewBounds="false"
+            android:background="@drawable/main_round_button"
+            android:clickable="false"
+            android:padding="24dp"
+            android:src="@drawable/ic_records_white_24px"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/trainEmployeeLabel" />
+
+        <TextView
+            android:id="@+id/reportsEmployeeLabel"
+            style="@style/titleLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/mainReportsLabel"
+            android:textColor="@color/mainTextColorTitles"
+            app:layout_constraintEnd_toEndOf="@+id/reportsEmployeeButton"
+            app:layout_constraintStart_toStartOf="@+id/reportsEmployeeButton"
+            app:layout_constraintTop_toBottomOf="@+id/reportsEmployeeButton" />
+
+        <ImageView
+            android:id="@+id/settingsButton"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginEnd="48dp"
+            android:adjustViewBounds="false"
+            android:background="@drawable/main_round_button"
+            android:clickable="false"
+            android:padding="24dp"
+            android:src="@drawable/ic_round_settings_24px"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/reportsEmployeeButton" />
+
+        <TextView
+            android:id="@+id/settingsLabel"
+            style="@style/titleLabels"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@string/mainSettingsLabel"
+            android:textColor="@color/mainTextColorTitles"
+            app:layout_constraintEnd_toEndOf="@+id/settingsButton"
+            app:layout_constraintStart_toStartOf="@+id/settingsButton"
+            app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
+
 
 
 

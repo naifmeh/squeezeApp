@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/addEmployeeCoordinator"
+    tools:context=".activities.AddEmployeeActivity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/addEmployeeConstraint"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="150dp"
+            android:id="@+id/firstNameInputLayout"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addEmployeeAppBarLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/firstNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/firstNameHint"
+                android:textColor="@color/labelTextColor"
+                android:shadowColor="@color/labelTextColor"
+                android:textColorHint="@color/labelTextColor"
+                android:textColorHighlight="@color/labelTextColor"
+                />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/lastNameInputLayout"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintStart_toEndOf="@+id/firstNameInputLayout"
+            app:layout_constraintTop_toTopOf="@+id/firstNameInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/lastNameEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/lastNameHint"
+                android:shadowColor="@color/labelTextColor"
+                android:textColor="@color/labelTextColor"
+                android:textColorHighlight="@color/labelTextColor"
+                android:textColorHint="@color/labelTextColor" />
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/emailInputLayout"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/firstNameInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/emailEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/emailHint"
+                android:shadowColor="@color/labelTextColor"
+                android:textColor="@color/labelTextColor"
+                android:inputType="textEmailAddress"
+                android:textColorHighlight="@color/labelTextColor"
+                android:textColorHint="@color/labelTextColor" />
+        </android.support.design.widget.TextInputLayout>
+
+        <Switch
+            android:id="@+id/authorizedSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:switchPadding="15dp"
+            android:text="@string/authorizationLabel"
+            android:textColor="@color/labelTextColor"
+            android:textColorHighlight="@color/colorAccent"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/emailInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/emailInputLayout" />
+
+
+        <TextView
+            android:id="@+id/fromTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/fromLabel"
+            android:textColor="@color/labelTextColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@+id/authorizedSwitch"
+            app:layout_constraintTop_toTopOf="@+id/dateBeginningAuthInputLayout" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/dateBeginningAuthInputLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/fromTextView"
+            app:layout_constraintTop_toBottomOf="@+id/authorizedSwitch">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/dateBeginningAuthEditText"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:shadowColor="@color/labelTextColor"
+                android:textColor="@color/labelTextColor"
+                android:textColorHighlight="@color/labelTextColor"
+                android:textColorHint="@color/labelTextColor" />
+        </android.support.design.widget.TextInputLayout>
+
+        <TextView
+            android:id="@+id/toTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/toLabel"
+            android:textColor="@color/labelTextColor"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/dateBeginningAuthInputLayout"
+            app:layout_constraintTop_toTopOf="@+id/fromTextView" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/dateEndingAuthInputLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="59dp"
+            android:layout_marginStart="8dp"
+            app:layout_constraintStart_toEndOf="@+id/toTextView"
+            app:layout_constraintTop_toTopOf="@+id/dateBeginningAuthInputLayout">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/dateEndingAuthEditText"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:shadowColor="@color/labelTextColor"
+                android:textColor="@color/labelTextColor"
+                android:textColorHighlight="@color/labelTextColor"
+                android:textColorHint="@color/labelTextColor" />
+        </android.support.design.widget.TextInputLayout>
+
+        
+
+
+        <Button
+            android:id="@+id/sendEmployeeButton"
+            android:background="@color/buttonBcgColor"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/addEmployeeBtnHeight"
+            android:tint="@color/buttonTextColor"
+            android:text="@string/addEmployeeBtn"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginBottom="0dp"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/addEmployeeAppBarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/addEmployeeToolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_marginEnd="0dp"
+                android:layout_marginStart="0dp"
+                android:layout_marginTop="0dp"
+                android:background="@color/colorPrimaryDark"
+                android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+
+            </android.support.v7.widget.Toolbar>
+
+
+        </android.support.design.widget.AppBarLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.design.widget.CoordinatorLayout>

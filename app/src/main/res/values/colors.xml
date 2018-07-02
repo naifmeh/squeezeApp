@@ -6,4 +6,8 @@
 
     <color name="mainRoundButtonColor">@color/colorPrimaryDark</color>
     <color name="mainTextColorTitles">#FFFFFF</color>
+    <color name="buttonTextColor">#FFFFFF</color>
+    <color name="buttonBcgColor">#FFFFFF</color>
+
+    <color name="labelTextColor">#FFFFFF</color>
 </resources>
