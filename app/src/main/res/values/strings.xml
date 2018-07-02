@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SqueezeAdmin</string>
+
+    <string name="mainAddLabel">Add</string>
+    <string name="mainViewLabel">View</string>
+    <string name="mainReportsLabel">Reports</string>
+    <string name="mainTrainLabel">Train</string>
+    <string name="mainSettingsLabel">Settings</string>
+</resources>
