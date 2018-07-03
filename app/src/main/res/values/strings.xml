@@ -18,4 +18,12 @@
     <string name="fullNameLabel">Full name separated by a \'-\'</string>
     <string name="trainNetwork">TRAIN NETWORK</string>
 
+    <string name="shared_prefs_file_key">ddgfde6-f5e5f65d-efefdss-efesa</string>
+    <string name="shared_prefs_jwt_key">JWT_KEY_678984654987</string>
+    <string name="deviceFakeMac">11:22:33:44:55:66</string>
+    <string name="deviceFakeName">android</string>
+
+    <string name="successTitle">Success</string>
+    <string name="successAddingEmployee"> Success while adding the employee to the database.</string>
+
 </resources>

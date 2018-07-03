@@ -14,4 +14,10 @@
         <item name="android:textSize">@dimen/titleMainLabel</item>
         <item name="android:fontFamily">sans-serif-black</item>
     </style>
+
+    <style name="recyclerViewLabels">
+        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textSize">@dimen/titleMainLabel</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
 </resources>
