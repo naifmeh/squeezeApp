@@ -1,8 +1,10 @@
 package com.squeeze.squeezeadmin.activities;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.WindowManager;
@@ -39,10 +41,13 @@ public class MainActivity extends AppCompatActivity {
         /* Setting up status bar color and toolbar*/
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
         setSupportActionBar(mainToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        Drawable icon = ContextCompat.getDrawable(this,R.drawable.ic_logo_24px);
+        mainToolbar.setNavigationIcon(icon);
+        mainToolbar.setTitle(R.string.app_name);
 
         /* Setting up listeners */
         addEmployeeButton.setOnClickListener((view)->{

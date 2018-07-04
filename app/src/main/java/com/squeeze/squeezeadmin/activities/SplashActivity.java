@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -24,6 +25,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squeeze.squeezeadmin.R;
 import com.squeeze.squeezeadmin.beans.AuthDeviceBean;
@@ -99,30 +101,35 @@ public class SplashActivity extends AppCompatActivity {
             mQueue = NetworkRequestsSingleton.getInstance(mCtx).getRequestQueue();
 
             mBuilder = new Uri.Builder();
-            mBuilder.scheme(RequestScheme.HTTP_SCHEME)
-                    .encodedAuthority(RequestScheme.AUTHORITY)
-                    .encodedPath(RequestScheme.DEVICE_PATH);
+
 
         }
 
         @Override
         protected Integer doInBackground(Void... voids) {
             mSharedPrefs = mCtx.getSharedPreferences(getString(R.string.shared_prefs_file_key), mCtx.MODE_PRIVATE);
-
-            mBuilder.encodedPath(RequestScheme.DEVICE_AUTHENTICATE);
+            mBuilder.scheme(RequestScheme.HTTP_SCHEME)
+                    .encodedAuthority(RequestScheme.AUTHORITY)
+                    .appendPath(RequestScheme.DEVICE_PATH)
+                    .appendPath(RequestScheme.DEVICE_AUTHENTICATE);
             mUri = mBuilder.build();
+            Log.d(TAG,"URI ---- "+mUri.toString());
             Gson gson = new Gson();
             JsonObject deviceObject = new JsonObject();
-            DeviceBean deviceBean = new DeviceBean(getString(R.string.deviceFakeName),getString(R.string.deviceFakeName));
+            DeviceBean deviceBean = new DeviceBean(getString(R.string.deviceFakeName),getString(R.string.deviceFakeMac));
+            JsonElement dataDevice = gson.fromJson(gson.toJson(deviceBean),JsonElement.class);
 
-            deviceObject.addProperty("data",gson.toJson(deviceBean));
+            deviceObject.add("data",dataDevice);
+            Log.d(TAG,deviceObject.toString());
+
             StringRequest jwtRequest = new StringRequest(Request.Method.POST,mUri.toString(), (response) -> {
                 AuthDeviceBean data = gson.fromJson(response,AuthDeviceBean.class);
                 SharedPreferences.Editor sharedEditor = mSharedPrefs.edit();
                 sharedEditor.putString(getString(R.string.shared_prefs_jwt_key), data.getData().getToken());
                 sharedEditor.commit();
             }, (error) -> {
-
+                Toast.makeText(SplashActivity.this,"Error while performing network action",Toast.LENGTH_LONG)
+                        .show();
             }) {
                 @Override
                 protected Response<String> parseNetworkResponse(NetworkResponse response) {
@@ -158,7 +165,7 @@ public class SplashActivity extends AppCompatActivity {
             mQueue.add(jwtRequest);
 
             try {
-                Thread.sleep(1500);
+                Thread.sleep(2000);
             } catch(InterruptedException e) {
                 Log.e(TAG,e.getMessage());
             }
@@ -168,7 +175,7 @@ public class SplashActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(Integer integer) {
             super.onPostExecute(integer);
-
+            displayMainActivity();
         }
     }
 }

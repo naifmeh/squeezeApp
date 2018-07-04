@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Switch;
@@ -26,7 +25,6 @@ import com.squeeze.squeezeadmin.network.RequestScheme;
 import com.squeeze.squeezeadmin.ui.SuccessDialog;
 import com.squeeze.squeezeadmin.utils.DisplayUtils;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -110,19 +108,15 @@ public class AddEmployeeActivity extends AppCompatActivity {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
-                .encodedPath(RequestScheme.EMPLOYEES_PATH)
-                .encodedPath(RequestScheme.EMPLOYEES_REGISTER);
+                .appendPath(RequestScheme.EMPLOYEES_PATH)
+                .appendPath(RequestScheme.EMPLOYEES_REGISTER);
         StringRequest addEmployeeRequest = new StringRequest(Request.Method.POST,
                 builder.build().toString(),(response) -> {
             mSuccessDialog = new SuccessDialog(AddEmployeeActivity.this,getString(R.string.successAddingEmployee));
             if(mSuccessDialog.isShowing()) mSuccessDialog.dismiss();
             mSuccessDialog.show();
         }, (error) -> {
-            try {
-                Log.e(TAG, new String(error.networkResponse.data,"utf-8"));
-            } catch (UnsupportedEncodingException e) {
-                e.printStackTrace();
-            }
+            Toast.makeText(AddEmployeeActivity.this,"Error while performing request",Toast.LENGTH_LONG).show();
             //TODO: Error dialog
         }) {
             @Override
@@ -144,7 +138,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
             public byte[] getBody() throws AuthFailureError {
                 Gson gson = new Gson();
                 JsonObject json = new JsonObject();
-                json.addProperty("data",gson.toJson(employeeBean));
+                JsonObject jsonEmployee = gson.fromJson(gson.toJson(employeeBean),JsonObject.class);
+                json.add("data",jsonEmployee);
                 return json.toString().getBytes();
             }
         };

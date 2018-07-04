@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.WindowManager;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -23,7 +23,6 @@ import com.squeeze.squeezeadmin.network.RequestScheme;
 import com.squeeze.squeezeadmin.utils.NetworkUtils;
 import com.squeeze.squeezeadmin.utils.RecyclerAdapter;
 
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,16 +52,20 @@ public class ViewEmployeesActivity extends AppCompatActivity {
         /* Setting up status bar color and toolbar*/
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimary));
+            getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
 
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /* Business logic */
         mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key),MODE_PRIVATE);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
+
+        requestListEmployees();
 
     }
 
@@ -73,7 +76,8 @@ public class ViewEmployeesActivity extends AppCompatActivity {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
-                .encodedPath(RequestScheme.EMPLOYEES_ALL);
+                .appendPath(RequestScheme.EMPLOYEES_PATH)
+                .appendPath(RequestScheme.EMPLOYEES_ALL);
 
         StringRequest listEmplRequest = new StringRequest(Request.Method.GET,
                 builder.build().toString(),
@@ -85,11 +89,10 @@ public class ViewEmployeesActivity extends AppCompatActivity {
 
                     mAdapter.notifyDataSetChanged();
                 }, (error) -> {
-                    try {
-                        Log.e(TAG,new String(error.networkResponse.data,"utf-8"));
-                    } catch (UnsupportedEncodingException e) {
-                        e.printStackTrace();
-                    }
+
+                        Toast.makeText(ViewEmployeesActivity.this,"Cannot perform data request",Toast.LENGTH_LONG)
+                                .show();
+
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
@@ -98,5 +101,7 @@ public class ViewEmployeesActivity extends AppCompatActivity {
                 return headers;
             }
         };
+
+        queue.add(listEmplRequest);
     }
 }

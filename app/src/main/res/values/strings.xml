@@ -25,5 +25,8 @@
 
     <string name="successTitle">Success</string>
     <string name="successAddingEmployee"> Success while adding the employee to the database.</string>
+    <string name="successSendingImages">Success while saving images</string>
 
+    <string name="viewEmployeesTitle">DATABASE</string>
+    <string name="trainNetTitle">Train</string>
 </resources>

@@ -2,7 +2,8 @@
 <resources>
 
     <dimen name="titleMainLabel">20sp</dimen>
-    <dimen name="addEmployeeBtnHeight">50dp</dimen>
+    <dimen name="addEmployeeBtnHeight">60dp</dimen>
 
     <dimen name="recyclerViewLabel">16sp</dimen>
+    <dimen name="textInputLaySize">20sp</dimen>
 </resources>

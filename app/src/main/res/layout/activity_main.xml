@@ -7,194 +7,225 @@
     android:id="@+id/mainCoordinator"
     android:fitsSystemWindows="true"
     tools:context="com.squeeze.squeezeadmin.activities.MainActivity">
-
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/mainConstraint"
-        android:background="@color/colorPrimary"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <ImageView
-            android:id="@+id/addEmployeeButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="32dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/main_round_button"
-            android:clickable="false"
-            android:padding="24dp"
-            android:src="@drawable/ic_person_add_white_24px"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-        <TextView
-            android:id="@+id/addEmployeeLabel"
-            style="@style/titleLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:textColor="@color/mainTextColorTitles"
-            app:layout_constraintEnd_toEndOf="@+id/addEmployeeButton"
-            app:layout_constraintStart_toStartOf="@+id/addEmployeeButton"
-            app:layout_constraintTop_toBottomOf="@+id/addEmployeeButton"
-            android:text="@string/mainAddLabel"
-            tools:text="Add" />
-
-        <ImageView
-            android:id="@+id/viewEmployeeButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="48dp"
-            android:layout_marginTop="32dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/main_round_button"
-            android:clickable="false"
-            android:padding="24dp"
-            android:src="@drawable/ic_baseline_eye_white_24px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
-
-        <TextView
-            android:id="@+id/viewEmployeeLabel"
-            style="@style/titleLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mainViewLabel"
-            android:textColor="@color/mainTextColorTitles"
-            app:layout_constraintEnd_toEndOf="@+id/viewEmployeeButton"
-            app:layout_constraintStart_toStartOf="@+id/viewEmployeeButton"
-            app:layout_constraintTop_toBottomOf="@+id/viewEmployeeButton" />
-
-        <ImageView
-            android:id="@+id/trainEmployeeButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="32dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/main_round_button"
-            android:clickable="false"
-            android:padding="24dp"
-            android:src="@drawable/ic_network_white_24px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addEmployeeLabel" />
-
-        <TextView
-            android:id="@+id/trainEmployeeLabel"
-            style="@style/titleLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mainTrainLabel"
-            android:textColor="@color/mainTextColorTitles"
-            app:layout_constraintEnd_toEndOf="@+id/trainEmployeeButton"
-            app:layout_constraintStart_toStartOf="@+id/trainEmployeeButton"
-            app:layout_constraintTop_toBottomOf="@+id/trainEmployeeButton" />
-
-        <ImageView
-            android:id="@+id/reportsEmployeeButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginStart="48dp"
-            android:layout_marginTop="8dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/main_round_button"
-            android:clickable="false"
-            android:padding="24dp"
-            android:src="@drawable/ic_records_white_24px"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/trainEmployeeLabel" />
-
-        <TextView
-            android:id="@+id/reportsEmployeeLabel"
-            style="@style/titleLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mainReportsLabel"
-            android:textColor="@color/mainTextColorTitles"
-            app:layout_constraintEnd_toEndOf="@+id/reportsEmployeeButton"
-            app:layout_constraintStart_toStartOf="@+id/reportsEmployeeButton"
-            app:layout_constraintTop_toBottomOf="@+id/reportsEmployeeButton" />
-
-        <ImageView
-            android:id="@+id/settingsButton"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginEnd="48dp"
-            android:adjustViewBounds="false"
-            android:background="@drawable/main_round_button"
-            android:clickable="false"
-            android:padding="24dp"
-            android:src="@drawable/ic_round_settings_24px"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/reportsEmployeeButton" />
-
-        <TextView
-            android:id="@+id/settingsLabel"
-            style="@style/titleLabels"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/mainSettingsLabel"
-            android:textColor="@color/mainTextColorTitles"
-            app:layout_constraintEnd_toEndOf="@+id/settingsButton"
-            app:layout_constraintStart_toStartOf="@+id/settingsButton"
-            app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
-
-
-
-
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="match_parent"
+            android:src="@drawable/beach"
+            android:scaleType="centerCrop"/>
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/containerConstraint">
 
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/mainToolbar"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/mainConstraint"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:layout_marginEnd="0dp"
-                android:layout_marginStart="0dp"
-                android:layout_marginTop="0dp"
-                android:background="@color/colorPrimaryDark"
-                android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+
+                <ImageView
+                    android:id="@+id/addEmployeeButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/main_round_button"
+                    android:clickable="false"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_person_add_white_24px"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/addEmployeeLabel"
+                    style="@style/titleLabels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mainAddLabel"
+                    android:textColor="@color/mainTextColorTitles"
+                    app:layout_constraintEnd_toEndOf="@+id/addEmployeeButton"
+                    app:layout_constraintStart_toStartOf="@+id/addEmployeeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/addEmployeeButton"
+                    tools:text="Add" />
+
+                <ImageView
+                    android:id="@+id/viewEmployeeButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="48dp"
+                    android:layout_marginTop="8dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/main_round_button"
+                    android:clickable="false"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_baseline_eye_white_24px"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/viewEmployeeLabel"
+                    style="@style/titleLabels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mainViewLabel"
+                    android:textColor="@color/mainTextColorTitles"
+                    app:layout_constraintEnd_toEndOf="@+id/viewEmployeeButton"
+                    app:layout_constraintStart_toStartOf="@+id/viewEmployeeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/viewEmployeeButton" />
+
+                <ImageView
+                    android:id="@+id/trainEmployeeButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="32dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/main_round_button"
+                    android:clickable="false"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_network_white_24px"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/addEmployeeLabel" />
+
+                <TextView
+                    android:id="@+id/trainEmployeeLabel"
+                    style="@style/titleLabels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mainTrainLabel"
+                    android:textColor="@color/mainTextColorTitles"
+                    app:layout_constraintEnd_toEndOf="@+id/trainEmployeeButton"
+                    app:layout_constraintStart_toStartOf="@+id/trainEmployeeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/trainEmployeeButton" />
+
+                <ImageView
+                    android:id="@+id/reportsEmployeeButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="48dp"
+                    android:layout_marginTop="8dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/main_round_button"
+                    android:clickable="false"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_records_white_24px"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/trainEmployeeLabel" />
+
+                <TextView
+                    android:id="@+id/reportsEmployeeLabel"
+                    style="@style/titleLabels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mainReportsLabel"
+                    android:textColor="@color/mainTextColorTitles"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/reportsEmployeeButton"
+                    app:layout_constraintStart_toStartOf="@+id/reportsEmployeeButton"
+                    app:layout_constraintTop_toBottomOf="@+id/reportsEmployeeButton" />
+
+                <ImageView
+                    android:id="@+id/settingsButton"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginEnd="48dp"
+                    android:adjustViewBounds="false"
+                    android:background="@drawable/main_round_button"
+                    android:clickable="false"
+                    android:padding="24dp"
+                    android:src="@drawable/ic_round_settings_24px"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/reportsEmployeeButton" />
+
+                <TextView
+                    android:id="@+id/settingsLabel"
+                    style="@style/titleLabels"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/mainSettingsLabel"
+                    android:textColor="@color/mainTextColorTitles"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/settingsButton"
+                    app:layout_constraintStart_toStartOf="@+id/settingsButton"
+                    app:layout_constraintTop_toBottomOf="@+id/settingsButton" />
 
 
-            </android.support.v7.widget.Toolbar>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.design.widget.AppBarLayout
+                android:id="@+id/appBarLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/mainToolbar"
+                    android:layout_width="match_parent"
+                    app:titleTextColor="@color/floralWhite"
+                    android:layout_height="?attr/actionBarSize"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:theme="@style/TransparentToolbar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
-        </android.support.design.widget.AppBarLayout>
+                </android.support.v7.widget.Toolbar>
 
-    </android.support.constraint.ConstraintLayout>
+
+            </android.support.design.widget.AppBarLayout>
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </FrameLayout>
+
+
+
+
+
 
 
 </android.support.design.widget.CoordinatorLayout>
