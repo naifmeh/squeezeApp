@@ -3,7 +3,7 @@
     package="com.squeeze.squeezeadmin">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -12,11 +12,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.MainActivity"/>
+        <activity android:name=".activities.MainActivity" />
         <activity android:name=".activities.AddEmployeeActivity" />
         <activity android:name=".activities.TrainNetworkActivity" />
         <activity android:name=".activities.ViewEmployeesActivity" />
-        <activity android:name=".activities.SplashActivity"
+        <activity
+            android:name=".activities.SplashActivity"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -25,6 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activities.ViewLogsActivity"></activity>
     </application>
 
 </manifest>

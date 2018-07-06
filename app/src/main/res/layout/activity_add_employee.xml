@@ -10,17 +10,17 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/addEmployeeConstraint"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/firstNameInputLayout"
-            android:layout_width="0dp"
+            style="@style/TextAppearence.App.TextInputLayout"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
+            android:layout_width="200dp"
+            android:layout_marginTop="24dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toStartOf="@+id/lastNameInputLayout"
+            android:textColorHint="@color/floralWhite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/addEmployeeAppBarLayout">
 
@@ -28,44 +28,51 @@
                 android:id="@+id/firstNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/firstNameHint"
-                android:textSize="@dimen/textInputLaySize"
                 android:fontFamily="sans-serif-thin"
+                android:hint="@string/firstNameHint"
                 android:shadowColor="@color/labelTextColor"
                 android:textColor="@color/labelTextColor"
                 android:textColorHighlight="@color/labelTextColor"
-                android:textColorHint="@color/labelTextColor" />
+                android:textColorHint="@color/labelTextColor"
+                android:textSize="@dimen/textInputLaySize" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/lastNameInputLayout"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/firstNameInputLayout">
+            style="@style/TextAppearence.App.TextInputLayout"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:textColorHint="@color/floralWhite"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/firstNameInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/lastNameEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/lastNameHint"
                 android:fontFamily="sans-serif-thin"
-                android:textSize="@dimen/textInputLaySize"
+                android:hint="@string/lastNameHint"
                 android:shadowColor="@color/labelTextColor"
                 android:textColor="@color/labelTextColor"
                 android:textColorHighlight="@color/labelTextColor"
-                android:textColorHint="@color/labelTextColor" />
+                android:textColorHint="@color/labelTextColor"
+                android:textSize="@dimen/textInputLaySize" />
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/emailInputLayout"
+            style="@style/TextAppearence.App.TextInputLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:textColorHint="@color/floralWhite"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/firstNameInputLayout"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameInputLayout">
+            app:layout_constraintTop_toBottomOf="@+id/lastNameInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/emailEditText"
@@ -73,12 +80,12 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
                 android:hint="@string/emailHint"
-                android:textSize="@dimen/textInputLaySize"
                 android:inputType="textEmailAddress"
                 android:shadowColor="@color/labelTextColor"
                 android:textColor="@color/labelTextColor"
                 android:textColorHighlight="@color/labelTextColor"
-                android:textColorHint="@color/labelTextColor" />
+                android:textColorHint="@color/labelTextColor"
+                android:textSize="@dimen/textInputLaySize" />
         </android.support.design.widget.TextInputLayout>
 
         <Switch
@@ -101,7 +108,6 @@
             android:id="@+id/fromTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
             android:fontFamily="sans-serif-thin"
             android:text="@string/fromLabel"
@@ -112,7 +118,7 @@
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/dateBeginningAuthInputLayout"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="32dp"
@@ -121,7 +127,7 @@
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/dateBeginningAuthEditText"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:shadowColor="@color/labelTextColor"
@@ -135,25 +141,25 @@
             android:id="@+id/toTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="sans-serif-thin"
             android:text="@string/toLabel"
             android:textColor="@color/labelTextColor"
             android:textSize="20sp"
-            app:layout_constraintStart_toEndOf="@+id/dateBeginningAuthInputLayout"
-            app:layout_constraintTop_toTopOf="@+id/fromTextView" />
+            app:layout_constraintStart_toStartOf="@+id/fromTextView"
+            app:layout_constraintTop_toTopOf="@+id/dateEndingAuthInputLayout" />
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/dateEndingAuthInputLayout"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            app:layout_constraintStart_toEndOf="@+id/toTextView"
-            app:layout_constraintTop_toTopOf="@+id/dateBeginningAuthInputLayout">
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@+id/dateBeginningAuthInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/dateBeginningAuthInputLayout">
 
             <android.support.design.widget.TextInputEditText
                 android:id="@+id/dateEndingAuthEditText"
-                android:layout_width="80dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="date"
                 android:shadowColor="@color/labelTextColor"
@@ -163,28 +169,30 @@
                 android:textSize="@dimen/textInputLaySize" />
         </android.support.design.widget.TextInputLayout>
 
-        
-
 
         <Button
             android:id="@+id/sendEmployeeButton"
-            android:background="@color/buttonBcgColor"
             android:layout_width="match_parent"
             android:layout_height="@dimen/addEmployeeBtnHeight"
-            android:tint="@color/buttonTextColor"
-            android:text="@string/addEmployeeBtn"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-medium"
-            android:textColor="@color/colorPrimary"
             android:layout_marginBottom="0dp"
+            android:background="@color/buttonBcgColor"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/addEmployeeBtn"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp"
+            android:tint="@color/buttonTextColor"
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <android.support.design.widget.AppBarLayout
             android:id="@+id/addEmployeeAppBarLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
+                android:textAlignment="center"
+                app:theme="@style/ToolbarColoredBackArrow"
+                app:title="Add employee"
+                app:titleTextColor="@color/floralWhite"
                 android:id="@+id/addEmployeeToolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"

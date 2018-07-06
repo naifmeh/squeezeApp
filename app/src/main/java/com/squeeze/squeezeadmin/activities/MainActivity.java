@@ -65,5 +65,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        reportsEmployeeButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(MainActivity.this, ViewLogsActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
+//TODO: Settings must allow to delete all the pictures from the folders.
+// TODO : Delete employee by swipping

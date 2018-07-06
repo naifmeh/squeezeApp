@@ -8,12 +8,14 @@
     <string name="mainSettingsLabel">Settings</string>
 
     <string name="addEmployeeBtn">SEND DATA</string>
+    <string name="updateEmployeeBtn">UPDATE</string>
 
     <string name="firstNameHint">First name</string>
     <string name="lastNameHint">Last name</string>
     <string name="emailHint">Email</string>
     <string name="authorizationLabel">Authorized</string>
     <string name="fromLabel">From</string>
+    <string name="dateFormatHint">dd/mm/yyyy</string>
     <string name="toLabel">To</string>
     <string name="fullNameLabel">Full name separated by a \'-\'</string>
     <string name="trainNetwork">TRAIN NETWORK</string>
@@ -28,5 +30,8 @@
     <string name="successSendingImages">Success while saving images</string>
 
     <string name="viewEmployeesTitle">DATABASE</string>
+    <string name="viewLogsTitle">LOGS</string>
     <string name="trainNetTitle">Train</string>
+
+    <string name="updateBtmSheetTitle">UPDATE</string>
 </resources>

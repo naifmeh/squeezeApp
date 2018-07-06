@@ -11,7 +11,7 @@
     <style name="titleLabels">
         <item name="android:textColor">@color/mainTextColorTitles</item>
         <item name="android:textSize">@dimen/titleMainLabel</item>
-        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:fontFamily">sans-serif-thin</item>
     </style>
 
     <style name="recyclerViewLabels">
@@ -30,5 +30,9 @@
         <item name="android:windowActionBarOverlay">true</item>
         <!-- Support library compatibility -->
         <item name="windowActionBarOverlay">true</item>
+    </style>
+
+    <style name="TextAppearence.App.TextInputLayout" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/floralWhite</item>
     </style>
 </resources>

@@ -82,9 +82,8 @@ public class DisplayUtils {
 
         String encoded = Base64.encodeToString(byteArray,Base64.DEFAULT);
         long timeStamp = new Date().getTime();
-        ImageBean imageBean = new ImageBean(timeStamp,fileName,encoded);
+        return new ImageBean(timeStamp, fileName, encoded);
 
-        return imageBean;
     }
 
 

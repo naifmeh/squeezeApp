@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Switch;
@@ -70,6 +71,8 @@ public class AddEmployeeActivity extends AppCompatActivity {
         }
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         /* Setting listener */
         sendDataBtn.setOnClickListener((view) -> {
@@ -94,6 +97,16 @@ public class AddEmployeeActivity extends AppCompatActivity {
 
         mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key),MODE_PRIVATE);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private boolean verifyFields() {

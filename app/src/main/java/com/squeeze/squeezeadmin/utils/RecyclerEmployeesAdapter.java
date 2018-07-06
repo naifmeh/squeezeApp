@@ -2,6 +2,7 @@ package com.squeeze.squeezeadmin.utils;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,11 +13,15 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.squeeze.squeezeadmin.R;
+import com.squeeze.squeezeadmin.activities.ViewEmployeesActivity;
 import com.squeeze.squeezeadmin.beans.EmployeeBean;
+import com.squeeze.squeezeadmin.fragments.UpdateDialogFragment;
 
-public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+public class RecyclerEmployeesAdapter extends RecyclerView.Adapter<RecyclerEmployeesAdapter.ViewHolder> {
     private JsonArray mJsonArray;
     private Context mCtx;
+    private RecyclerAdapterListener mListener;
+    private BottomSheetDialogFragment bottomSheetDialogFragment;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -39,9 +44,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         }
     }
 
-    public RecyclerAdapter(Context context, JsonArray jsonArray) {
+    public RecyclerEmployeesAdapter(Context context, JsonArray jsonArray, RecyclerAdapterListener listener) {
         mCtx = context;
         mJsonArray = jsonArray;
+        mListener = listener;
+
+        bottomSheetDialogFragment = UpdateDialogFragment.newInstance();
     }
 
     @NonNull
@@ -55,10 +63,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, int pos) {
         if(mJsonArray == null) return;
         Gson gson = new Gson();
-        EmployeeBean employee = gson.fromJson(mJsonArray.get(0),EmployeeBean.class);
+        EmployeeBean employee = gson.fromJson(mJsonArray.get(pos), EmployeeBean.class);
         holder.firstName.setText(employee.getFirstName());
         holder.lastName.setText(employee.getLastName());
-        holder.editButton.setOnClickListener(null); //TODO: Renvoyer vers la modif
+        holder.editButton.setOnClickListener((view) -> {
+            mListener.setEmployeeValues(employee);
+            bottomSheetDialogFragment.show(((ViewEmployeesActivity) mCtx).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
+        }); //TODO: Renvoyer vers la modif
         DisplayUtils.setLockIcon(holder.lockButton,employee.authorized,mCtx);
         holder.dateBeg.setText(DisplayUtils.getTimestampDate(employee.getAuthStarting()));
         holder.dateEnd.setText(DisplayUtils.getTimestampDate(employee.getAuthEnding()));
@@ -69,5 +80,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public int getItemCount() {
         if(mJsonArray == null || mJsonArray.size() == 0) return 0;
         return mJsonArray.size();
+    }
+
+    public interface RecyclerAdapterListener {
+        void setEmployeeValues(EmployeeBean employee);
     }
 }

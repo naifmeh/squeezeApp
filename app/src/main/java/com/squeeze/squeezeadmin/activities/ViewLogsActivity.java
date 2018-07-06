@@ -19,42 +19,38 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.squeeze.squeezeadmin.R;
-import com.squeeze.squeezeadmin.beans.EmployeeBean;
-import com.squeeze.squeezeadmin.fragments.UpdateDialogFragment;
 import com.squeeze.squeezeadmin.network.NetworkRequestsSingleton;
 import com.squeeze.squeezeadmin.network.RequestScheme;
 import com.squeeze.squeezeadmin.utils.NetworkUtils;
-import com.squeeze.squeezeadmin.utils.RecyclerEmployeesAdapter;
+import com.squeeze.squeezeadmin.utils.RecyclerLogAdapter;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDialogFragment.UpdateDialogListener {
-    private static final String TAG = ViewEmployeesActivity.class.getSimpleName();
+public class ViewLogsActivity extends AppCompatActivity {
+    private static final String TAG = ViewLogsActivity.class.getSimpleName();
 
     /* UI */
     private Toolbar mToolbar;
-    private RecyclerView mRecyclerView;
+    private RecyclerView mRecycler;
     private RecyclerView.LayoutManager mLayoutManager;
 
     /* Data */
-    private RecyclerEmployeesAdapter mAdapter;
-    private EmployeeBean mEmployee;
+    private RecyclerLogAdapter mAdapter;
 
     private SharedPreferences mSharedPrefs;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_employees);
+        setContentView(R.layout.activity_view_logs);
 
         /* Init UI */
-        mToolbar = (Toolbar) findViewById(R.id.viewEmployeesToolbar);
-        mRecyclerView = (RecyclerView) findViewById(R.id.listEmployeesRecycler);
+        mToolbar = (Toolbar) findViewById(R.id.viewLogsToolbar);
+        mRecycler = (RecyclerView) findViewById(R.id.logsRecycler);
 
         /* Setting up status bar color and toolbar*/
-        if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
             getWindow().setStatusBarColor(getResources().getColor(R.color.colorPrimaryDark));
         }
@@ -65,12 +61,11 @@ public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDi
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         /* Business logic */
-        mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key),MODE_PRIVATE);
+        mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key), MODE_PRIVATE);
         mLayoutManager = new LinearLayoutManager(this);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecycler.setLayoutManager(mLayoutManager);
 
-        requestListEmployees();
-
+        requestLogs();
     }
 
     @Override
@@ -83,7 +78,7 @@ public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDi
         return super.onOptionsItemSelected(item);
     }
 
-    private void requestListEmployees() {
+    private void requestLogs() {
         RequestQueue queue = NetworkRequestsSingleton.getInstance(this)
                 .getRequestQueue();
 
@@ -91,43 +86,29 @@ public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDi
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
                 .appendPath(RequestScheme.EMPLOYEES_PATH)
-                .appendPath(RequestScheme.EMPLOYEES_ALL);
+                .appendPath(RequestScheme.EMPLOYEES_LOGS);
 
-        StringRequest listEmplRequest = new StringRequest(Request.Method.GET,
+        StringRequest logsRequest = new StringRequest(Request.Method.GET,
                 builder.build().toString(),
                 (response) -> {
                     Gson gson = new Gson();
-                    JsonArray jsonArray = gson.fromJson(response,JsonArray.class);
-                    mAdapter = new RecyclerEmployeesAdapter(ViewEmployeesActivity.this, jsonArray,
-                            (employee -> mEmployee = employee));
-                    mRecyclerView.setAdapter(mAdapter);
+                    JsonArray jsonArray = gson.fromJson(response, JsonArray.class);
+                    mAdapter = new RecyclerLogAdapter(ViewLogsActivity.this, jsonArray, null);
+                    mRecycler.setAdapter(mAdapter);
 
                     mAdapter.notifyDataSetChanged();
                 }, (error) -> {
-
-                        Toast.makeText(ViewEmployeesActivity.this,"Cannot perform data request",Toast.LENGTH_LONG)
-                                .show();
-
+            Toast.makeText(ViewLogsActivity.this, "Cannot perfom network request", Toast.LENGTH_LONG).show();
         }) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
-                headers.put("Authorization","Bearer "+ NetworkUtils.getJwtFromSharedPrefs(ViewEmployeesActivity.this,mSharedPrefs));
+                headers.put("Authorization", "Bearer " + NetworkUtils.getJwtFromSharedPrefs(ViewLogsActivity.this, mSharedPrefs));
+
                 return headers;
             }
         };
 
-        queue.add(listEmplRequest);
-    }
-
-    @Override
-    public EmployeeBean getEmployeeBean() {
-        return mEmployee;
-    }
-
-    @Override
-    public void notifyNetworkResponse() {
-        requestListEmployees();
-        mAdapter.notifyDataSetChanged();
+        queue.add(logsRequest);
     }
 }
