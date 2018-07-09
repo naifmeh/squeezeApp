@@ -195,6 +195,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
                                 mSuccessDialog.show();
                                 imagesBean = new ArrayList<>();
                                 mSpinKit.setVisibility(View.GONE);
+                                
                             } else {
                                 if(mSuccessDialog.isShowing()){
                                     mSuccessDialog.dismiss();

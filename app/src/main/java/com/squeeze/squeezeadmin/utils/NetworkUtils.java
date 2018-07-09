@@ -1,6 +1,7 @@
 package com.squeeze.squeezeadmin.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.squeeze.squeezeadmin.R;
+import com.squeeze.squeezeadmin.activities.MainActivity;
 import com.squeeze.squeezeadmin.beans.AuthDeviceBean;
 import com.squeeze.squeezeadmin.beans.DeviceBean;
 import com.squeeze.squeezeadmin.network.NetworkRequestsSingleton;
@@ -40,14 +42,16 @@ public class NetworkUtils {
                 .encodedAuthority(RequestScheme.AUTHORITY)
                 .appendPath(RequestScheme.NETWORK_PATH)
                 .appendPath(RequestScheme.NETWORK_TRAIN);
-
+        final Intent intent = new Intent(ctx, MainActivity.class);
         StringRequest request = new StringRequest(Request.Method.POST,builder.build().toString(),
                 (response) -> {
                     Toast.makeText(ctx,"Network effectively trained",Toast.LENGTH_LONG)
                             .show();
+                    ctx.startActivity(intent);
                 },(error)->{
             Toast.makeText(ctx,"Network training error",Toast.LENGTH_LONG)
                     .show();
+            ctx.startActivity(intent);
         }){
             @Override
             public String getBodyContentType() {
