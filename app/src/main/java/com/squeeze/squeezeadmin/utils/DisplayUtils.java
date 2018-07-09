@@ -48,6 +48,11 @@ public class DisplayUtils {
         return 0;
     }
 
+    public static String parseDate(Date date) {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy @ hh:mm:ss");
+        String str = simpleDateFormat.format(date);
+        return str;
+    }
     public static void setLockIcon(ImageView view, boolean state, Context context) {
         if(state) {
             view.setImageDrawable(context.getDrawable(R.drawable.ic_lock_open_24px));

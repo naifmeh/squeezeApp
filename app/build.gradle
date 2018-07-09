@@ -40,5 +40,5 @@ dependencies {
     implementation 'com.wdullaer:materialdatetimepicker:3.6.1'
     implementation 'com.android.volley:volley:1.1.0'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.7'
-
+    implementation 'com.auth0.android:jwtdecode:1.1.1'
 }

@@ -70,6 +70,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        settingsButton.setOnClickListener((view) -> {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+        });
+
     }
 }
 //TODO: Settings must allow to delete all the pictures from the folders.

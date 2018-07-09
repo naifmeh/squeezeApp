@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory
+        android:key="pref_network_settings"
+        android:title="@string/prefs_network_settings">
+        <Preference
+            android:key="pref_delete_pictures"
+            android:summary="@string/delete_pics_summary"
+            android:title="@string/delete_pics_prefs" />
+
+        <Preference
+            android:key="pref_delete_logs"
+            android:summary="@string/delete_log_summary"
+            android:title="@string/delete_log_prefs" />
+
+        <Preference
+            android:key="pref_show_jwt"
+            android:summary="@string/jwt"
+            android:title="@string/view_jwt" />
+    </PreferenceCategory>
+</PreferenceScreen>

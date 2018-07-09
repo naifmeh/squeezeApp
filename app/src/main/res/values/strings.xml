@@ -34,4 +34,14 @@
     <string name="trainNetTitle">Train</string>
 
     <string name="updateBtmSheetTitle">UPDATE</string>
+
+    <string name="prefs_network_settings">Network settings</string>
+    <string name="delete_pics_prefs">Remove pictures</string>
+    <string name="delete_pics_summary">Delete all pictures from database</string>
+    <string name="delete_log_prefs">Empty log file</string>
+    <string name="delete_log_summary">Deleting log content. This is irreversible.</string>
+    <string name="view_jwt">Show JWT</string>
+    <string name="jwt">Tap to update JWT</string>
+
+    <string name="setting_title">Settings</string>
 </resources>

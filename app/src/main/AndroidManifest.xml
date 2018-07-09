@@ -27,6 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.ViewLogsActivity"></activity>
+        <activity android:name=".activities.SettingsActivity"></activity>
     </application>
 
 </manifest>
