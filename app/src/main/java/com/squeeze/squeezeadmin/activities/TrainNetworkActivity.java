@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -22,6 +23,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.StringRequest;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.gson.Gson;
 import com.squeeze.squeezeadmin.R;
 import com.squeeze.squeezeadmin.beans.ImageBean;
@@ -47,7 +49,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
     private ImageView thumbnails[] = new ImageView[12];
     private TextInputEditText mFullNameEditTxt;
     private Button mButton;
-
+    private SpinKitView mSpinKit;
 
     /* Data */
     private ArrayList<ImageBean> imagesBean = new ArrayList<>();
@@ -80,6 +82,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
         mGridLayout = (GridLayout) findViewById(R.id.gridViewTrainNetwork);
         mFullNameEditTxt = (TextInputEditText) findViewById(R.id.namePictureEditText);
         mButton = (Button) findViewById(R.id.trainButton);
+        mSpinKit = (SpinKitView) findViewById(R.id.sendImagesProgrss);
 
         /* Setting up status bar color and toolbar*/
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -112,6 +115,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
             if(!isImageSet) {
                 Toast.makeText(TrainNetworkActivity.this,"No image picked",Toast.LENGTH_LONG).show();
             }
+            mSpinKit.setVisibility(View.VISIBLE);
             sendImagesToServer();
         });
 
@@ -189,6 +193,8 @@ public class TrainNetworkActivity extends AppCompatActivity {
                                             mSuccessDialog.dismiss();
                                         });
                                 mSuccessDialog.show();
+                                imagesBean = new ArrayList<>();
+                                mSpinKit.setVisibility(View.GONE);
                             } else {
                                 if(mSuccessDialog.isShowing()){
                                     mSuccessDialog.dismiss();

@@ -53,7 +53,6 @@ public class SettingsActivity extends AppCompatActivity {
     public static class PrefsFragment extends PreferenceFragment {
 
         private SharedPreferences mSharedPrefs;
-        private boolean isShowingJwt = false;
 
         @Override
         public void onCreate(@Nullable Bundle savedInstanceState) {

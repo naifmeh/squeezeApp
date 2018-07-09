@@ -38,8 +38,8 @@ public class NetworkUtils {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
-                .encodedPath(RequestScheme.NETWORK_PATH)
-                .encodedPath(RequestScheme.NETWORK_TRAIN);
+                .appendPath(RequestScheme.NETWORK_PATH)
+                .appendPath(RequestScheme.NETWORK_TRAIN);
 
         StringRequest request = new StringRequest(Request.Method.POST,builder.build().toString(),
                 (response) -> {
@@ -83,8 +83,8 @@ public class NetworkUtils {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
-                .encodedPath(RequestScheme.NETWORK_PATH)
-                .encodedPath(RequestScheme.NETWORK_DELETE);
+                .appendPath(RequestScheme.NETWORK_PATH)
+                .appendPath(RequestScheme.NETWORK_DELETE);
 
         StringRequest request = new StringRequest(Request.Method.DELETE, builder.build().toString(),
                 (response) -> {
@@ -113,8 +113,8 @@ public class NetworkUtils {
         Uri.Builder builder = new Uri.Builder();
         builder.scheme(RequestScheme.HTTP_SCHEME)
                 .encodedAuthority(RequestScheme.AUTHORITY)
-                .encodedPath(RequestScheme.EMPLOYEES_PATH)
-                .encodedPath(RequestScheme.EMPLOYEES_LOGS);
+                .appendPath(RequestScheme.EMPLOYEES_PATH)
+                .appendPath(RequestScheme.EMPLOYEES_LOGS);
 
         StringRequest request = new StringRequest(Request.Method.DELETE, builder.build().toString(),
                 (response) -> Toast.makeText(ctx, "Logs vacated", Toast.LENGTH_LONG)
