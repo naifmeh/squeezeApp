@@ -17,6 +17,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -46,6 +47,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
     /* UI */
     private Toolbar mToolbar;
     private GridLayout mGridLayout;
+    private TextView mInstructions;
     private ImageView thumbnails[] = new ImageView[12];
     private TextInputEditText mFullNameEditTxt;
     private Button mButton;
@@ -83,6 +85,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
         mFullNameEditTxt = (TextInputEditText) findViewById(R.id.namePictureEditText);
         mButton = (Button) findViewById(R.id.trainButton);
         mSpinKit = (SpinKitView) findViewById(R.id.sendImagesProgrss);
+        mInstructions = (TextView) findViewById(R.id.instructionsTextView);
 
         /* Setting up status bar color and toolbar*/
         if( Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -115,6 +118,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
             if(!isImageSet) {
                 Toast.makeText(TrainNetworkActivity.this,"No image picked",Toast.LENGTH_LONG).show();
             }
+            mInstructions.setVisibility(View.GONE);
             mSpinKit.setVisibility(View.VISIBLE);
             sendImagesToServer();
         });
