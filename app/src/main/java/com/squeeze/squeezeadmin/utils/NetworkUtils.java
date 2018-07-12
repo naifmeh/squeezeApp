@@ -22,6 +22,7 @@ import com.squeeze.squeezeadmin.R;
 import com.squeeze.squeezeadmin.activities.MainActivity;
 import com.squeeze.squeezeadmin.beans.AuthDeviceBean;
 import com.squeeze.squeezeadmin.beans.DeviceBean;
+import com.squeeze.squeezeadmin.beans.EmployeeBean;
 import com.squeeze.squeezeadmin.network.NetworkRequestsSingleton;
 import com.squeeze.squeezeadmin.network.RequestScheme;
 
@@ -151,7 +152,7 @@ public class NetworkUtils {
                 .appendPath(RequestScheme.DEVICE_AUTHENTICATE);
         Uri uri = builder.build();
 
-        Gson gson = new Gson();
+        final Gson gson = new Gson();
         JsonObject deviceObject = new JsonObject();
         DeviceBean deviceBean = new DeviceBean(ctx.getString(R.string.deviceFakeName), ctx.getString(R.string.deviceFakeMac));
         JsonElement dataDevice = gson.fromJson(gson.toJson(deviceBean), JsonElement.class);
@@ -163,7 +164,7 @@ public class NetworkUtils {
             SharedPreferences.Editor sharedEditor = sharedPrefs.edit();
             sharedEditor.putString(ctx.getString(R.string.shared_prefs_jwt_key), data.getData().getToken());
             sharedEditor.commit();
-            listener.onJwtChange();
+            listener.onNetworkResponse();
         }, (error) -> Toast.makeText(ctx, "Error while performing network action", Toast.LENGTH_LONG)
                 .show()) {
             @Override
@@ -200,8 +201,69 @@ public class NetworkUtils {
         queue.add(jwtRequest);
     }
 
+    public static void deleteUser(Context ctx, SharedPreferences sharedPrefs, EmployeeBean employeeBean, NetworkActionsListener listener) {
+        RequestQueue queue = NetworkRequestsSingleton.getInstance(ctx).getRequestQueue();
+        Uri.Builder builder = new Uri.Builder();
+        final Gson gson = new Gson();
+        JsonObject json = new JsonObject();
+        JsonObject jsonEmployee = gson.fromJson(gson.toJson(employeeBean), JsonObject.class);
+        json.add("data", jsonEmployee);
+        System.out.println(json);
+        builder.scheme(RequestScheme.HTTP_SCHEME)
+                .encodedAuthority(RequestScheme.AUTHORITY)
+                .appendPath(RequestScheme.EMPLOYEES_PATH)
+                .appendPath(RequestScheme.EMPLOYEES_DELETE);
+
+        StringRequest request = new StringRequest(Request.Method.POST, builder.build().toString(),
+                (response) -> {
+                    Toast.makeText(ctx, "Deleted employee", Toast.LENGTH_LONG)
+                            .show();
+                    listener.onNetworkResponse();
+                }
+                , (error) -> {
+            Toast.makeText(ctx, "Error while deleting employee", Toast.LENGTH_LONG)
+                    .show();
+            if (error.networkResponse != null) {
+                try {
+                    System.out.println(new String(error.networkResponse.data, "utf-8"));
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }
+
+        ) {
+            @Override
+            public String getBodyContentType() {
+                return "application/json";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> headers = new HashMap<>();
+                headers.put("content-type", "application/json");
+                headers.put("Authorization", "Bearer " + getJwtFromSharedPrefs(ctx, sharedPrefs));
+
+                return headers;
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+
+                JsonObject json = new JsonObject();
+                JsonObject jsonEmployee = gson.fromJson(gson.toJson(employeeBean), JsonObject.class);
+                json.add("data", jsonEmployee);
+                System.out.println(json);
+                return json.toString().getBytes();
+            }
+        };
+
+        queue.add(request);
+    }
+
     public interface NetworkActionsListener {
-        void onJwtChange();
+        void onNetworkResponse();
     }
 
  }

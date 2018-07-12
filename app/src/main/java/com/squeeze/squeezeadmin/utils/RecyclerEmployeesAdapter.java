@@ -1,6 +1,7 @@
 package com.squeeze.squeezeadmin.utils;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomSheetDialogFragment;
 import android.support.v7.widget.RecyclerView;
@@ -22,41 +23,15 @@ public class RecyclerEmployeesAdapter extends RecyclerView.Adapter<RecyclerEmplo
     private Context mCtx;
     private RecyclerAdapterListener mListener;
     private BottomSheetDialogFragment bottomSheetDialogFragment;
-
-    public static class ViewHolder extends RecyclerView.ViewHolder {
-
-        public TextView firstName;
-        public TextView lastName;
-        public ImageView editButton;
-        public ImageView lockButton;
-        public TextView dateBeg;
-        public TextView dateEnd;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-             firstName = (TextView) itemView.findViewById(R.id.firstNameRecycler);
-             lastName = (TextView) itemView.findViewById(R.id.lastNameRecycler);
-             editButton = (ImageView) itemView.findViewById(R.id.editButtonRecycler);
-             lockButton = (ImageView) itemView.findViewById(R.id.lockAuthRecycler);
-             dateBeg = (TextView) itemView.findViewById(R.id.dateBegRecycler);
-             dateEnd = (TextView) itemView.findViewById(R.id.dateEndRecycler);
-        }
-    }
+    private SharedPreferences mSharedPrefs;
 
     public RecyclerEmployeesAdapter(Context context, JsonArray jsonArray, RecyclerAdapterListener listener) {
         mCtx = context;
         mJsonArray = jsonArray;
         mListener = listener;
+        mSharedPrefs = mCtx.getSharedPreferences(mCtx.getString(R.string.shared_prefs_file_key), mCtx.MODE_PRIVATE);
 
         bottomSheetDialogFragment = UpdateDialogFragment.newInstance();
-    }
-
-    @NonNull
-    @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(mCtx).inflate(R.layout.list_employees_recycler_layout,parent,false);
-        return new ViewHolder(itemView);
     }
 
     @Override
@@ -69,11 +44,47 @@ public class RecyclerEmployeesAdapter extends RecyclerView.Adapter<RecyclerEmplo
         holder.editButton.setOnClickListener((view) -> {
             mListener.setEmployeeValues(employee);
             bottomSheetDialogFragment.show(((ViewEmployeesActivity) mCtx).getSupportFragmentManager(), bottomSheetDialogFragment.getTag());
-        }); //TODO: Renvoyer vers la modif
+        });
+        holder.deleteButton.setOnClickListener(view -> {
+            NetworkUtils.deleteUser(mCtx, mSharedPrefs, employee, () -> {
+                notifyItemRemoved(pos);
+                notifyDataSetChanged();
+            });
+        });
         DisplayUtils.setLockIcon(holder.lockButton,employee.authorized,mCtx);
         holder.dateBeg.setText(DisplayUtils.getTimestampDate(employee.getAuthStarting()));
         holder.dateEnd.setText(DisplayUtils.getTimestampDate(employee.getAuthEnding()));
 
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View itemView = LayoutInflater.from(mCtx).inflate(R.layout.list_employees_recycler_layout, parent, false);
+        return new ViewHolder(itemView);
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+
+        public TextView firstName;
+        public TextView lastName;
+        public ImageView editButton;
+        public ImageView deleteButton;
+        public ImageView lockButton;
+        public TextView dateBeg;
+        public TextView dateEnd;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            firstName = (TextView) itemView.findViewById(R.id.firstNameRecycler);
+            lastName = (TextView) itemView.findViewById(R.id.lastNameRecycler);
+            editButton = (ImageView) itemView.findViewById(R.id.editButtonRecycler);
+            lockButton = (ImageView) itemView.findViewById(R.id.lockAuthRecycler);
+            dateBeg = (TextView) itemView.findViewById(R.id.dateBegRecycler);
+            dateEnd = (TextView) itemView.findViewById(R.id.dateEndRecycler);
+            deleteButton = (ImageView) itemView.findViewById(R.id.deleteEmployeeRecycler);
+        }
     }
 
     @Override

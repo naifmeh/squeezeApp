@@ -14,6 +14,7 @@ public class RequestScheme {
     public static String EMPLOYEES_IMAGE = "image";
     public static String EMPLOYEES_ALL =  "list";
     public static String EMPLOYEES_LOGS = "logs";
+    public static String EMPLOYEES_DELETE = "remove";
 
 
     public static String NETWORK_PATH = "network";

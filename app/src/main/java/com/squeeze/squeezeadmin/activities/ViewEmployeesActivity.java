@@ -103,12 +103,11 @@ public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDi
                     mRecyclerView.setAdapter(mAdapter);
 
                     mAdapter.notifyDataSetChanged();
-                }, (error) -> {
-
+                }, (error) ->
                         Toast.makeText(ViewEmployeesActivity.this,"Cannot perform data request",Toast.LENGTH_LONG)
-                                .show();
+                                .show()
 
-        }) {
+        ) {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> headers = new HashMap<>();
