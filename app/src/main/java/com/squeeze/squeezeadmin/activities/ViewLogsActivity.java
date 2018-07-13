@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -92,11 +93,16 @@ public class ViewLogsActivity extends AppCompatActivity {
                 builder.build().toString(),
                 (response) -> {
                     Gson gson = new Gson();
-                    JsonArray jsonArray = gson.fromJson(response, JsonArray.class);
-                    mAdapter = new RecyclerLogAdapter(ViewLogsActivity.this, jsonArray, null);
-                    mRecycler.setAdapter(mAdapter);
+                    Log.d(TAG, response);
+                    if (!response.equals("null")) {
+                        JsonArray jsonArray = gson.fromJson(response, JsonArray.class);
+                        mAdapter = new RecyclerLogAdapter(ViewLogsActivity.this, jsonArray, null);
+                        mRecycler.setAdapter(mAdapter);
 
-                    mAdapter.notifyDataSetChanged();
+                        mAdapter.notifyDataSetChanged();
+                    } else {
+                        Toast.makeText(ViewLogsActivity.this, "Log file is empty for now.", Toast.LENGTH_LONG).show();
+                    }
                 }, (error) -> {
             Toast.makeText(ViewLogsActivity.this, "Cannot perfom network request", Toast.LENGTH_LONG).show();
         }) {
