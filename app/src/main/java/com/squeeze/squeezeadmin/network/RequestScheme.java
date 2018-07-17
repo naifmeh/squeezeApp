@@ -2,7 +2,7 @@ package com.squeeze.squeezeadmin.network;
 
 public class RequestScheme {
     public static String HTTP_SCHEME = "http";
-    public static String AUTHORITY = "18.219.202.43:8083";
+    public static String AUTHORITY = "179.106.238.28:8080";
 
     public static String DEVICE_PATH = "device";
     public static String DEVICE_REGISTER = "register";

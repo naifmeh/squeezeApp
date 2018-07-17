@@ -60,6 +60,7 @@ public class ViewLogsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setTitle(R.string.viewLogsActivity);
 
         /* Business logic */
         mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key), MODE_PRIVATE);

@@ -63,6 +63,7 @@ public class ViewEmployeesActivity extends AppCompatActivity implements UpdateDi
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mToolbar.setTitle(R.string.viewEmployeesActivity);
 
         /* Business logic */
         mSharedPrefs = getSharedPreferences(getString(R.string.shared_prefs_file_key),MODE_PRIVATE);

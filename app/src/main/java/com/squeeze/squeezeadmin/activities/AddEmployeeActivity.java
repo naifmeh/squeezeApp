@@ -73,6 +73,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        mToolbar.setTitle(R.string.addEmployeeActivity);
 
         /* Setting listener */
         sendDataBtn.setOnClickListener((view) -> {

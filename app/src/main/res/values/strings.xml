@@ -32,6 +32,9 @@
     <string name="viewEmployeesTitle">DATABASE</string>
     <string name="viewLogsTitle">LOGS</string>
     <string name="trainNetTitle">Train</string>
+    <string name="viewEmployeesActivity">Manage</string>
+    <string name="viewLogsActivity">Logs</string>
+    <string name="addEmployeeActivity">New employee</string>
 
     <string name="updateBtmSheetTitle">UPDATE</string>
 
@@ -42,6 +45,8 @@
     <string name="delete_log_summary">Deleting log content. This is irreversible.</string>
     <string name="view_jwt">Show JWT</string>
     <string name="jwt">Tap to update JWT</string>
+    <string name="view_ip">Server IP</string>
+    <string name="server_ip">1.1.1.1</string>
 
     <string name="setting_title">Settings</string>
 </resources>

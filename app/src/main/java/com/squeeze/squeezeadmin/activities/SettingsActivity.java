@@ -7,10 +7,14 @@ import android.preference.PreferenceFragment;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.auth0.android.jwt.DecodeException;
 import com.auth0.android.jwt.JWT;
 import com.squeeze.squeezeadmin.R;
+import com.squeeze.squeezeadmin.network.RequestScheme;
 import com.squeeze.squeezeadmin.utils.DisplayUtils;
 import com.squeeze.squeezeadmin.utils.NetworkUtils;
 
@@ -32,7 +36,6 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         mToolbar.setTitle(R.string.setting_title);
 
@@ -79,18 +82,26 @@ public class SettingsActivity extends AppCompatActivity {
             });
 
             Preference showJwtPrefs = findPreference("pref_show_jwt");
-            final JWT jwt = new JWT(mSharedPrefs.getString(getString(R.string.shared_prefs_jwt_key),
-                    getString(R.string.jwt)));
-            showJwtPrefs.setTitle("JWT valid until " + DisplayUtils.parseDate(jwt.getExpiresAt()));
-            showJwtPrefs.setOnPreferenceClickListener((pref) -> {
-                NetworkUtils.getJwt(getActivity(), mSharedPrefs, () -> {
-                    JWT jwtUpdated = new JWT(mSharedPrefs.getString(getString(R.string.shared_prefs_jwt_key),
-                            getString(R.string.jwt)));
-                    pref.setTitle("JWT valid until " + DisplayUtils.parseDate(jwtUpdated.getExpiresAt()));
-                });
+            try {
+                final JWT jwt = new JWT(mSharedPrefs.getString(getString(R.string.shared_prefs_jwt_key),
+                        getString(R.string.jwt)));
+                showJwtPrefs.setTitle("JWT valid until " + DisplayUtils.parseDate(jwt.getExpiresAt()));
+                showJwtPrefs.setOnPreferenceClickListener((pref) -> {
+                    NetworkUtils.getJwt(getActivity(), mSharedPrefs, () -> {
+                        JWT jwtUpdated = new JWT(mSharedPrefs.getString(getString(R.string.shared_prefs_jwt_key),
+                                getString(R.string.jwt)));
+                        pref.setTitle("JWT valid until " + DisplayUtils.parseDate(jwtUpdated.getExpiresAt()));
+                    });
 
-                return true;
-            });
+                    return true;
+                });
+            } catch (DecodeException e) {
+                Log.e(TAG, e.getMessage());
+                Toast.makeText(getContext(), "Unable to retrieve JWT", Toast.LENGTH_LONG).show();
+            }
+
+            Preference showIpPrefs = findPreference("pref_show_ip");
+            showIpPrefs.setSummary(RequestScheme.AUTHORITY);
         }
 
 

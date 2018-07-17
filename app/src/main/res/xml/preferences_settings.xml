@@ -12,6 +12,10 @@
             android:key="pref_delete_logs"
             android:summary="@string/delete_log_summary"
             android:title="@string/delete_log_prefs" />
+        <Preference
+            android:key="pref_show_ip"
+            android:summary="@string/server_ip"
+            android:title="@string/view_ip" />
 
         <Preference
             android:key="pref_show_jwt"

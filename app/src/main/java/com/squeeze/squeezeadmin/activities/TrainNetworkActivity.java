@@ -117,6 +117,7 @@ public class TrainNetworkActivity extends AppCompatActivity {
         mButton.setOnClickListener( (view) -> {
             if(!isImageSet) {
                 Toast.makeText(TrainNetworkActivity.this,"No image picked",Toast.LENGTH_LONG).show();
+                return;
             }
             mInstructions.setVisibility(View.GONE);
             mSpinKit.setVisibility(View.VISIBLE);
